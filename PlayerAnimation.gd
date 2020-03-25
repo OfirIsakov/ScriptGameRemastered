@@ -11,10 +11,10 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if Input.is_key_pressed(KEY_A) and not is_running:
+	if Input.is_key_pressed(KEY_A) and not is_running and not Input.is_key_pressed(KEY_D):
 		play("running")
 		flip_h = true
-	elif Input.is_key_pressed(KEY_D) and not is_running:
+	elif Input.is_key_pressed(KEY_D) and not is_running and not Input.is_key_pressed(KEY_A):
 		play("running")
 		flip_h = false
 	elif Input.is_key_pressed(KEY_W) and not is_running:

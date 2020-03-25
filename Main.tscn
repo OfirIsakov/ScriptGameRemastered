@@ -10,10 +10,11 @@
 [ext_resource path="res://running/running_2.png" type="Texture" id=8]
 [ext_resource path="res://running/running_0.png" type="Texture" id=9]
 [ext_resource path="res://Background.png" type="Texture" id=10]
-[ext_resource path="res://pixel art/Obstacle.png" type="Texture" id=11]
+[ext_resource path="res://Obstacle1.tscn" type="PackedScene" id=11]
 [ext_resource path="res://PlayerAnimation.gd" type="Script" id=12]
 [ext_resource path="res://MainPlayer.gd" type="Script" id=13]
-[ext_resource path="res://Obstacle.gd" type="Script" id=14]
+[ext_resource path="res://SelectedObjectLabel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Main.gd" type="Script" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5172.68, 295.327 )
@@ -38,12 +39,9 @@ animations = [ {
 "speed": 12.0
 } ]
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 22.0539
-height = 24.3947
-
 [node name="Main" type="Node2D"]
 position = Vector2( 493.695, 313.563 )
+script = ExtResource( 15 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
 position = Vector2( 304.717, 355.572 )
@@ -92,15 +90,7 @@ scale = Vector2( 0.25, 0.25 )
 current = true
 smoothing_enabled = true
 
-[node name="Obstacle1" type="KinematicBody2D" parent="."]
-script = ExtResource( 14 )
+[node name="Obstacle1" parent="." instance=ExtResource( 11 )]
+position = Vector2( -737.965, 331.656 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle1"]
-position = Vector2( -577.836, 388.119 )
-rotation = 1.5708
-shape = SubResource( 5 )
-
-[node name="Sprite" type="Sprite" parent="Obstacle1"]
-position = Vector2( -575.757, 367.168 )
-scale = Vector2( 0.1, 0.1 )
-texture = ExtResource( 11 )
+[node name="SelectedObjectLabel" parent="." instance=ExtResource( 14 )]
