@@ -24,4 +24,4 @@ func _process(delta):
 		play("running")
 		#flip_h = false
 	elif not (Input.is_key_pressed(KEY_W) or Input.is_key_pressed(KEY_A) or Input.is_key_pressed(KEY_S) or Input.is_key_pressed(KEY_D)):
-		play("default")
+		play("StandingHopHop")
