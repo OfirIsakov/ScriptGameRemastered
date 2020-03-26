@@ -1,40 +1,14 @@
 shader_type canvas_item;
-render_mode blend_premul_alpha;
+render_mode blend_mix;
 
-uniform float radius = 5.0;
-uniform float amount = 0.25;
+uniform vec2 offset = vec2(8.0, 8.0);
+uniform vec4 modulate : hint_color;
 
 void fragment() {
-	float r = radius;
 	vec2 ps = TEXTURE_PIXEL_SIZE;
+
+	vec4 shadow = vec4(modulate.rgb, texture(TEXTURE, UV - offset * ps).a * modulate.a);
 	vec4 col = texture(TEXTURE, UV);
-	vec4 glow = col;
 
-	glow += texture(TEXTURE, UV + vec2(-r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, r) * ps);
-
-	r *= 2.0;
-	glow += texture(TEXTURE, UV + vec2(-r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, r) * ps);
-
-	glow /= 17.0;
-	glow *= amount;
-	col.rgb *= col.a;
-
-	COLOR = glow + col;
+	COLOR = mix(shadow, col, col.a);
 }
-
-
-

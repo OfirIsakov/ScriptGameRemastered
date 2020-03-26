@@ -5,51 +5,41 @@
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
-render_mode blend_premul_alpha;
 
-uniform float radius = 5.0;
-uniform float amount = 0.25;
+uniform float outline_width = 2.0;
+uniform vec4 outline_color: hint_color;
 
 void fragment() {
-	float r = radius;
-	vec2 ps = TEXTURE_PIXEL_SIZE;
 	vec4 col = texture(TEXTURE, UV);
-	vec4 glow = col;
+	vec2 ps = TEXTURE_PIXEL_SIZE;
+	float a;
+	float maxa = col.a;
+	float mina = col.a;
 
-	glow += texture(TEXTURE, UV + vec2(-r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, r) * ps);
+	a = texture(TEXTURE, UV + vec2(0.0, -outline_width) * ps).a;
+	maxa = max(a, maxa);
+	mina = min(a, mina);
 
-	r *= 2.0;
-	glow += texture(TEXTURE, UV + vec2(-r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(-r, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(0.0, r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, -r) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, 0.0) * ps);
-	glow += texture(TEXTURE, UV + vec2(r, r) * ps);
+	a = texture(TEXTURE, UV + vec2(0.0, outline_width) * ps).a;
+	maxa = max(a, maxa);
+	mina = min(a, mina);
 
-	glow /= 17.0;
-	glow *= amount;
-	col.rgb *= col.a;
+	a = texture(TEXTURE, UV + vec2(-outline_width, 0.0) * ps).a;
+	maxa = max(a, maxa);
+	mina = min(a, mina);
 
-	COLOR = glow + col;
+	a = texture(TEXTURE, UV + vec2(outline_width, 0.0) * ps).a;
+	maxa = max(a, maxa);
+	mina = min(a, mina);
+
+	COLOR = mix(col, outline_color, maxa - mina);
 }
-
-
-
 "
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/radius = 5.0
-shader_param/amount = 0.0
+shader_param/outline_width = 0.0
+shader_param/outline_color = Color( 0.89, 0.4717, 0.478672, 1 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 30.5223, 28.1398 )
