@@ -22,3 +22,8 @@ func _on_Area2D_mouse_entered():
 func _on_Area2D_mouse_exited():
 	$Area2D/Sprite.material.set_shader_param("amount", "0.0")
 	hover = false
+
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		get_node("/root/Main/Player/PlayerAnimation").playComputerOpenAnim()
