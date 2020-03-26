@@ -35,21 +35,10 @@ func _process(delta):
 
 func playComputerOpenAnim():
 	is_hacking = true
-	#is_opening_computer = true
-	#connect("finished", self, "playComputerStandAnim")
 	play("ComputerOpen");
 	
 func playComputerCloseAnim():
 	play("ComputerOpen", true)
-
-func finishComputerClosing():
-	is_hacking = false
-
-func playComputerStandAnim():
-	#is_opening_computer = false
-	if(animation == "ComputerOpen"):
-		play("ComputerStanding")
-
 
 func _on_PlayerAnimation_animation_finished():
 	if(animation == "ComputerOpen"):
