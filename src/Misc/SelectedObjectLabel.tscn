@@ -2,7 +2,6 @@
 
 [ext_resource path="res://src/Misc/SelectedObjectLabel.gd" type="Script" id=1]
 
-
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/comic-sans-ms/COMIC.TTF"
 
