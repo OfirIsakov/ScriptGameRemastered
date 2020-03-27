@@ -1,42 +1,11 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/Terrain/NewNewBackground.png" type="Texture" id=1]
-[ext_resource path="res://assets/Player/StandingHopHop/StandingHopHop_2.png" type="Texture" id=2]
-[ext_resource path="res://assets/Player/running/running_0.png" type="Texture" id=3]
-[ext_resource path="res://assets/Player/StandingHopHop/StandingHopHop_1.png" type="Texture" id=4]
-[ext_resource path="res://assets/Player/running/running_5.png" type="Texture" id=5]
-[ext_resource path="res://assets/Player/running/running_7.png" type="Texture" id=6]
-[ext_resource path="res://assets/Player/running/running_6.png" type="Texture" id=7]
-[ext_resource path="res://assets/Player/running/running_3.png" type="Texture" id=8]
-[ext_resource path="res://assets/Player/running/running_1.png" type="Texture" id=9]
-[ext_resource path="res://assets/Player/running/running_4.png" type="Texture" id=10]
-[ext_resource path="res://assets/Player/running/running_2.png" type="Texture" id=11]
-[ext_resource path="res://assets/Player/StandingHopHop/StandingHopHop_0.png" type="Texture" id=12]
-[ext_resource path="res://assets/Player/StandingHopHop/StandingHopHop_3.png" type="Texture" id=13]
-[ext_resource path="res://src/Player/PlayerAnimation.gd" type="Script" id=14]
-[ext_resource path="res://src/Player/Player.gd" type="Script" id=15]
+[ext_resource path="res://src/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/Levels/Main.gd" type="Script" id=16]
 [ext_resource path="res://src/Misc/SelectedObjectLabel.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/Obstacles/Havit/Havit.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_03.png" type="Texture" id=19]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_01.png" type="Texture" id=20]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_04.png" type="Texture" id=21]
-[ext_resource path="res://assets/Player/ComputerStanding.png" type="Texture" id=22]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_00.png" type="Texture" id=23]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_02.png" type="Texture" id=24]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_05.png" type="Texture" id=25]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_06.png" type="Texture" id=26]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_11.png" type="Texture" id=27]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_13.png" type="Texture" id=28]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_07.png" type="Texture" id=29]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_08.png" type="Texture" id=30]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_15.png" type="Texture" id=31]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_09.png" type="Texture" id=32]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_10.png" type="Texture" id=33]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_12.png" type="Texture" id=34]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_17.png" type="Texture" id=35]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_14.png" type="Texture" id=36]
-[ext_resource path="res://assets/Player/ComputerOpen/ComputerOpen_16.png" type="Texture" id=37]
+[ext_resource path="res://src/Texteditor/TextEditor.tscn" type="PackedScene" id=38]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 29803.9, 3200.45 )
@@ -44,45 +13,6 @@ extents = Vector2( 29803.9, 3200.45 )
 [sub_resource type="ImageTexture" id=2]
 flags = 3
 flags = 3
-
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 262.65, 82.8748 )
-
-[sub_resource type="StreamTexture" id=4]
-flags = 4
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 4 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 23 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 29 ), ExtResource( 30 ), ExtResource( 32 ), ExtResource( 33 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 28 ), ExtResource( 36 ), ExtResource( 31 ), ExtResource( 37 ), ExtResource( 35 ) ],
-"loop": false,
-"name": "ComputerOpen",
-"speed": 14.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 9 ), ExtResource( 11 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 5 ), ExtResource( 7 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "running",
-"speed": 12.0
-}, {
-"frames": [ ExtResource( 35 ), ExtResource( 37 ), ExtResource( 31 ), ExtResource( 36 ), ExtResource( 28 ), ExtResource( 27 ), ExtResource( 34 ), ExtResource( 33 ), ExtResource( 32 ), ExtResource( 30 ), ExtResource( 29 ), ExtResource( 26 ), ExtResource( 25 ), ExtResource( 21 ), ExtResource( 19 ), ExtResource( 24 ), ExtResource( 20 ), ExtResource( 23 ) ],
-"loop": false,
-"name": "ComputerClose",
-"speed": 14.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "ComputerStanding",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 12 ), ExtResource( 4 ), ExtResource( 2 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "StandingHopHop",
-"speed": 6.0
-} ]
 
 [node name="Main" type="Node2D"]
 position = Vector2( 493.695, 313.563 )
@@ -107,7 +37,7 @@ position = Vector2( -8671.36, -3640.49 )
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 130.106, 446.114 )
+position = Vector2( 132.378, 446.114 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 normal_map = SubResource( 2 )
@@ -115,29 +45,14 @@ offset = Vector2( -135.057, -90.9696 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7700, 900 )
 
-[node name="Player" type="KinematicBody2D" parent="."]
-script = ExtResource( 15 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-position = Vector2( -955.787, 396.042 )
-scale = Vector2( 0.25, 0.25 )
-shape = SubResource( 3 )
-
-[node name="PlayerAnimation" type="AnimatedSprite" parent="Player"]
-position = Vector2( -961, 324 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 5 )
-animation = "ComputerClose"
-script = ExtResource( 14 )
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( -955.781, 287.011 )
-scale = Vector2( 0.25, 0.25 )
-current = true
-smoothing_enabled = true
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1273.43, 360.856 )
 
 [node name="Obstacle1" parent="." instance=ExtResource( 18 )]
 position = Vector2( -737.965, 331.656 )
 
 [node name="SelectedObjectLabel" parent="." instance=ExtResource( 17 )]
-[connection signal="animation_finished" from="Player/PlayerAnimation" to="Player/PlayerAnimation" method="_on_PlayerAnimation_animation_finished"]
+position = Vector2( -96.8419, -25.2631 )
+
+[node name="TextEditor" parent="." instance=ExtResource( 38 )]
+position = Vector2( -865.099, 960.432 )

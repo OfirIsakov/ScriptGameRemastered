@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/Texteditor/TextEditor.gd" type="Script" id=1]
+[ext_resource path="res://assets/GUI/Exit.png" type="Texture" id=2]
+[ext_resource path="res://src/Texteditor/ExitButton.gd" type="Script" id=3]
+
+[node name="TextEditor" type="Node2D"]
+z_index = 4096
+script = ExtResource( 1 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextEdit" type="TextEdit" parent="CanvasLayer"]
+anchor_bottom = 0.376
+margin_right = 82.0
+margin_bottom = -145.6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="CanvasLayer"]
+margin_left = 62.7461
+margin_top = 3.43202
+margin_right = 106.746
+margin_bottom = 41.432
+icon = ExtResource( 2 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="CanvasLayer/ExitButton" to="CanvasLayer/TextEdit" method="_on_ExitButton_pressed"]
