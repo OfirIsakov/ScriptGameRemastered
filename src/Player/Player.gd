@@ -6,10 +6,10 @@ var is_moving = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	z_index = position.y + 1000
+	pass
 
 func _process(delta):
-	z_index = position.y + 1000
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):

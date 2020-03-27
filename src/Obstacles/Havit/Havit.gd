@@ -8,7 +8,7 @@ var hsv_h = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	z_index = position.y + 1000
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,4 +30,4 @@ func _on_Area2D_mouse_exited():
 
 func _on_Area2D_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		get_node("/root/Main/Player/PlayerAnimation").playComputerOpenAnim()
+		get_node("/root/Main/YSort/Player/PlayerAnimation").playComputerOpenAnim()

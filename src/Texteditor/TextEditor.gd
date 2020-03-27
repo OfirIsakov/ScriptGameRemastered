@@ -30,8 +30,8 @@ var allowed_chars = [
 var in_editor = false
 var editable_locations = [] # contains lists [line_number, column_number, editable_length]
 
-onready var player_node = $"/root/Main/Player"
-onready var camera_node = $"/root/Main/Player/Camera2D"
+onready var player_node = $"/root/Main/YSort/Player"
+onready var camera_node = $"/root/Main/YSort/Player/Camera2D"
 onready var exit_button = $"/root/Main/TextEditor/CanvasLayer/ExitButton"
 onready var textedit_node = $"/root/Main/TextEditor/CanvasLayer/TextEdit"
 
@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 	if textedit_node.is_selection_active():
 		textedit_node.deselect()
 
-	if not vlidate_cursor_location() or textedit_node.get_selection_from_column() != -1:
+	if not vlidate_cursor_location():
 		var closest_input = find_closest_input()
 		textedit_node.cursor_set_line(closest_input[0], true, false)
 		textedit_node.cursor_set_column(closest_input[1], true)

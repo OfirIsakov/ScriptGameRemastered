@@ -45,14 +45,16 @@ offset = Vector2( -135.057, -90.9696 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 7700, 900 )
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( -1273.43, 360.856 )
-
-[node name="Obstacle1" parent="." instance=ExtResource( 18 )]
-position = Vector2( -737.965, 331.656 )
-
 [node name="SelectedObjectLabel" parent="." instance=ExtResource( 17 )]
 position = Vector2( -96.8419, -25.2631 )
 
 [node name="TextEditor" parent="." instance=ExtResource( 38 )]
 position = Vector2( -865.099, 960.432 )
+
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Player" parent="YSort" instance=ExtResource( 2 )]
+position = Vector2( -1273.43, 360.856 )
+
+[node name="Obstacle1" parent="YSort" instance=ExtResource( 18 )]
+position = Vector2( -737.965, 331.656 )
