@@ -70,7 +70,7 @@ func _process(delta: float) -> void:
 		var closest_input = find_closest_input()
 		textedit_node.cursor_set_line(closest_input[0], true, false)
 		textedit_node.cursor_set_column(closest_input[1], true)
-		textedit_node.get_tree().set_input_as_handled() # get rid of
+		textedit_node.get_tree().set_input_as_handled() # get rid of this comment
 
 
 # Called every frame a key is pressed.
@@ -88,18 +88,21 @@ func _input(event: InputEvent) -> void:
 			if Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_RIGHT):
 				return
 			
+			var line_num = textedit_node.cursor_get_line()
+			var column_num = textedit_node.cursor_get_column()
+			
 			# loop over valid spots
-			for place in editable_locations:
-				if validate_input(event):
+			print(editable_locations)
+			for place in editable_locations: # each place contains lists [line_number, column_number, editable_length]
+				if validate_input(event) and line_num == place[0] and column_num >= place[1] and column_num <= place[1] + place[2]:
 					if Input.is_key_pressed(KEY_BACKSPACE) or Input.is_key_pressed(KEY_DELETE):
 						if place[2] > 0:
 							place[2] -= 1
-						else:
-							get_tree().set_input_as_handled()
+							return
 					else:
 						place[2] += 1
-				else:
-					get_tree().set_input_as_handled()
+						return
+			get_tree().set_input_as_handled()
 		else:
 			if Input.is_key_pressed(KEY_SPACE):
 				in_editor = true

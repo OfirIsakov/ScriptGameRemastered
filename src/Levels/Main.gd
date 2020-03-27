@@ -16,7 +16,7 @@ func _process(delta):
 	is_moving = $YSort/Player.is_moving
 	var flag = false
 	var name = "<value>"
-	var obstacles = [$Obstacle1/KinematicBody2D]
+	var obstacles = [$YSort/Obstacle1/KinematicBody2D]
 	for obstacle in obstacles:
 		if obstacle != null and obstacle.hover == true:
 			flag = true
