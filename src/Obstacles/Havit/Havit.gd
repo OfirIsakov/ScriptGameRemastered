@@ -3,8 +3,4 @@ extends Obstacle
 
 func _ready() -> void:
 	object_name = "Havit"
-
-
-func _on_Area2D_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
-		get_node("/root/Main/YSort/Player/PlayerAnimation").playComputerOpenAnim()
+	connect("input_event", get_parent(), "_on_Area2D_input_event")

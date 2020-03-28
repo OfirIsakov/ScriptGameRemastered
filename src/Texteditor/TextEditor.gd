@@ -31,6 +31,7 @@ var in_editor = false
 var editable_locations = [] # contains lists [line_number, column_number, editable_length]
 
 onready var player_node = $"/root/Main/YSort/Player"
+onready var player_animation_node = $"/root/Main/YSort/Player/PlayerAnimation"
 onready var camera_node = $"/root/Main/YSort/Player/Camera2D"
 onready var exit_button = $"/root/Main/TextEditor/CanvasLayer/ExitButton"
 onready var textedit_node = $"/root/Main/TextEditor/CanvasLayer/TextEdit"
@@ -81,10 +82,6 @@ func _input(event: InputEvent) -> void:
 
 		# check is the eventt is a keypress, input events can also be mouse move
 		if in_editor:
-			# check if user want to exit
-			if Input.is_key_pressed(KEY_ESCAPE):
-				_on_ExitButton_pressed()
-
 			if Input.is_key_pressed(KEY_LEFT) or Input.is_key_pressed(KEY_RIGHT):
 				return
 			
@@ -92,7 +89,6 @@ func _input(event: InputEvent) -> void:
 			var column_num = textedit_node.cursor_get_column()
 			
 			# loop over valid spots
-			print(editable_locations)
 			for place in editable_locations: # each place contains lists [line_number, column_number, editable_length]
 				if validate_input(event) and line_num == place[0] and column_num >= place[1] and column_num <= place[1] + place[2]:
 					if Input.is_key_pressed(KEY_BACKSPACE) or Input.is_key_pressed(KEY_DELETE):
@@ -102,21 +98,33 @@ func _input(event: InputEvent) -> void:
 					else:
 						place[2] += 1
 						return
+			# if it gets to this line that means no editable space was found
 			get_tree().set_input_as_handled()
-		else:
-			if Input.is_key_pressed(KEY_SPACE):
-				in_editor = true
-				camera_node.position = Vector2(-editor_size[0] / 2 , 0.0) + camera_node.position
-				textedit_node.cursor_set_line(editable_locations[0][0], true, false)
-				textedit_node.cursor_set_column(editable_locations[0][1] + editable_locations[0][2], true)
-				textedit_node.visible = true
-				exit_button.visible = true
-				player_node.set_physics_process(false)
-				resize(editor_size[0], editor_size[1])
-				exit_button._set_position(Vector2(editor_size[0] - exit_button.get_size()[0], get_position()[1]))
-				textedit_node.grab_focus()
-				textedit_node.readonly = false
 
+
+func enable():
+	in_editor = true
+	camera_node.position = Vector2(-editor_size[0] / 2 , 0.0) + camera_node.position
+	textedit_node.cursor_set_line(editable_locations[0][0], true, false)
+	textedit_node.cursor_set_column(editable_locations[0][1] + editable_locations[0][2], true)
+	textedit_node.visible = true
+	exit_button.visible = true
+	player_node.set_physics_process(false)
+	player_animation_node.set_process(false)
+	resize(editor_size[0], editor_size[1])
+	exit_button._set_position(Vector2(editor_size[0] - exit_button.get_size()[0], textedit_node.get_position()[1]))
+	textedit_node.grab_focus()
+	textedit_node.readonly = false
+
+
+func disable():
+	in_editor = false
+	camera_node.position = Vector2(editor_size[0] / 2 , 0.0) + camera_node.position
+	textedit_node.visible = false
+	exit_button.visible = false
+	textedit_node.readonly = true
+	player_node.set_physics_process(true)
+	player_animation_node.set_process(true)
 
 # Resizes
 func resize(size_x: int, size_y: int) -> void:
@@ -163,11 +171,4 @@ func find_closest_input() -> Array:
 
 
 func _on_ExitButton_pressed() -> void:
-	resize(0.0, 0.0)
-	if in_editor: # disable the textedit 
-		in_editor = false
-		camera_node.position = Vector2(editor_size[0] / 2 , 0.0) + camera_node.position
-		textedit_node.visible = false
-		exit_button.visible = false
-		textedit_node.readonly = true
-		player_node.set_physics_process (true)
+	player_animation_node.play("ComputerClose")

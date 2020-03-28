@@ -4,6 +4,7 @@ extends AnimatedSprite
 var is_running = false
 #var is_opening_computer = false
 var is_hacking = false
+onready var text_editor = $"/root/Main/TextEditor"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -43,5 +44,7 @@ func playComputerCloseAnim():
 func _on_PlayerAnimation_animation_finished():
 	if(animation == "ComputerOpen"):
 		play("ComputerStanding")
+		text_editor.enable()
 	elif(animation == "ComputerClose"):
 		is_hacking = false
+		text_editor.disable()

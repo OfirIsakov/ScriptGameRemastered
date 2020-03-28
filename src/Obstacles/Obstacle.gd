@@ -5,6 +5,7 @@ var hover = false
 var object_name = ""
 var hsv_h = 1
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	hsv_h += 1 * delta
@@ -21,3 +22,7 @@ func _on_Area2D_mouse_entered():
 func _on_Area2D_mouse_exited():
 	$Area2D/Sprite.material.set_shader_param("outline_width", "0")
 	hover = false
+
+func _on_Area2D_input_event(viewport, event, shape_idx):
+	if event is InputEventMouseButton and event.button_index == BUTTON_LEFT and event.pressed:
+		get_node("/root/Main/YSort/Player/PlayerAnimation").playComputerOpenAnim()
