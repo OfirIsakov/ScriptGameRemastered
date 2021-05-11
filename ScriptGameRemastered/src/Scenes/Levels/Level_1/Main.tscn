@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/Scripts/Main.gd" type="Script" id=1]
+[ext_resource path="res://src/Scenes/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/Scenes/Objects/Obstacle1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/Assets/Background.png" type="Texture" id=4]
+[ext_resource path="res://src/Scenes/SelectedObjectLabel.tscn" type="PackedScene" id=5]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 14.1181, 85.6217 )
+
+[node name="Main" type="Node2D"]
+position = Vector2( 493.695, 313.563 )
+script = ExtResource( 1 )
+
+[node name="Background" type="StaticBody2D" parent="."]
+position = Vector2( -493.695, -313.563 )
+
+[node name="Sprite" type="Sprite" parent="Background"]
+scale = Vector2( 10, 10 )
+z_index = -4096
+texture = ExtResource( 4 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 240, 64 )
+
+[node name="TopCollision" type="CollisionShape2D" parent="Background"]
+position = Vector2( 47.683, -112.29 )
+scale = Vector2( 100, 1 )
+shape = SubResource( 1 )
+
+[node name="BottomCollision" type="CollisionShape2D" parent="Background"]
+position = Vector2( 50.2028, 205.21 )
+scale = Vector2( 100, 1 )
+shape = SubResource( 1 )
+
+[node name="Enviroment" type="Node" parent="."]
+
+[node name="Obstacle1" parent="Enviroment" instance=ExtResource( 3 )]
+position = Vector2( 76.5285, 43.038 )
+z_index = 1
+
+[node name="SelectedObjectLabel" parent="." instance=ExtResource( 5 )]
+position = Vector2( -381.572, 45.5272 )
+
+[node name="Player" parent="." instance=ExtResource( 2 )]
+position = Vector2( -493.695, -313.563 )

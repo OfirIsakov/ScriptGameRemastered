@@ -6,7 +6,7 @@
 font_path = "res://src/Fonts/comic_sans/comic.TTF"
 
 [sub_resource type="DynamicFont" id=2]
-size = 18
+size = 256
 outline_size = 1
 outline_color = Color( 0, 0, 0, 1 )
 font_data = SubResource( 1 )
@@ -15,8 +15,8 @@ font_data = SubResource( 1 )
 z_index = 4096
 
 [node name="Label" type="Label" parent="."]
-margin_right = 56.0
-margin_bottom = 26.0
+margin_right = 112.0
+margin_bottom = 52.0
 rect_scale = Vector2( 0.1, 0.1 )
 custom_fonts/font = SubResource( 2 )
 text = "<value>"

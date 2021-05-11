@@ -1,65 +1,109 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/Scripts/PlayerAnimation.gd" type="Script" id=1]
 [ext_resource path="res://src/Scripts/MainPlayer.gd" type="Script" id=2]
-[ext_resource path="res://src/Assets/Player/running/running_7.png" type="Texture" id=3]
-[ext_resource path="res://src/Assets/Player/running/running_1.png" type="Texture" id=4]
-[ext_resource path="res://src/Assets/Player/running/running_3.png" type="Texture" id=5]
-[ext_resource path="res://src/Assets/Player/running/running_2.png" type="Texture" id=6]
-[ext_resource path="res://src/Assets/Player/running/running_5.png" type="Texture" id=7]
-[ext_resource path="res://src/Assets/Player/running/running_4.png" type="Texture" id=8]
-[ext_resource path="res://src/Assets/Player/running/running_0.png" type="Texture" id=9]
-[ext_resource path="res://src/Assets/Player/running/running_6.png" type="Texture" id=10]
-[ext_resource path="res://src/Assets/StandingHopHop/StandingHopHop_0.png" type="Texture" id=11]
-[ext_resource path="res://src/Assets/StandingHopHop/StandingHopHop_2.png" type="Texture" id=12]
-[ext_resource path="res://src/Assets/StandingHopHop/StandingHopHop_1.png" type="Texture" id=13]
-[ext_resource path="res://src/Assets/StandingHopHop/StandingHopHop_3.png" type="Texture" id=14]
-
-
-
-
+[ext_resource path="res://src/Assets/Player/running/PlayerRunning.png" type="Texture" id=3]
+[ext_resource path="res://src/Assets/Player/idle/PlayerIdle.png" type="Texture" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 262.65, 82.8748 )
+extents = Vector2( 63.7756, 40.2155 )
 
 [sub_resource type="StreamTexture" id=2]
 flags = 4
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 11 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 11 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 11 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 11 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 11 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 3 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 3 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 3 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 3 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 3 )
+region = Rect2( 128, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 3 )
+region = Rect2( 160, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 3 )
+region = Rect2( 192, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 3 )
+region = Rect2( 224, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 3 )
+region = Rect2( 256, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 3 )
+region = Rect2( 288, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=8]
 animations = [ {
 "frames": [ SubResource( 2 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 8 ), ExtResource( 7 ), ExtResource( 10 ), ExtResource( 3 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ), SubResource( 7 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
 "loop": true,
 "name": "running",
 "speed": 12.0
-}, {
-"frames": [ ExtResource( 11 ), ExtResource( 13 ), ExtResource( 12 ), ExtResource( 14 ) ],
-"loop": true,
-"name": "StandingHopHop",
-"speed": 6.0
 } ]
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -955.787, 396.042 )
+position = Vector2( 0, 40 )
 scale = Vector2( 0.25, 0.25 )
 shape = SubResource( 1 )
 
 [node name="PlayerAnimation" type="AnimatedSprite" parent="."]
-position = Vector2( -961, 324 )
-scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 3 )
-animation = "StandingHopHop"
+scale = Vector2( 3, 3 )
+frames = SubResource( 8 )
+animation = "idle"
 script = ExtResource( 1 )
 
 [node name="PlayerCam" type="Camera2D" parent="."]
-position = Vector2( -955.781, 287.011 )
 scale = Vector2( 0.25, 0.25 )
 current = true
 smoothing_enabled = true
